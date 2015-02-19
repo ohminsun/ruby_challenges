@@ -1,5 +1,5 @@
 def my_first_method
-    puts "This is my first method!"
+    puts "This is my first method! OMG!"
 end
 
 my_first_method
