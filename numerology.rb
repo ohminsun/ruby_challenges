@@ -6,7 +6,6 @@ def get_birth_path_num(birthdate)
     
     if number > 9
         number = number[0].to_i + number[1].to_i
-    end
     
     return number
 end
