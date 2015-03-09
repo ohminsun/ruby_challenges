@@ -1,9 +1,5 @@
 require "sinatra"
 
-get '/' do
-    "Hello, World!"
-end
-
 def determine_current_hour
     current_time = Time.new
     current_hour = current_time.hour
