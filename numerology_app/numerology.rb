@@ -47,13 +47,12 @@ birth_path_num = get_birth_path_num(birthdate)
 message = get_message(birth_path_num)
 puts message
 
-get '/newpage/' do
-   
-	erb :newpage
+get '/' do 
+    erb :form
 end
-    
-get '/:birthdate' do 
-   birthdate = params[:birthdate]
+
+post '/' do
+birthdate = params[:birthdate]
     birth_path_num = get_birth_path_num(birthdate)
     @message = get_message(birth_path_num)
     erb :index
