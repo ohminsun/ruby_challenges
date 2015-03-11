@@ -1,3 +1,6 @@
+require "sinatra"
+set :bind, '0.0.0.0'
+
 def get_birth_path_num(birthdate)
     number = birthdate[0].to_i + birthdate[1].to_i + birthdate[2].to_i + birthdate[3].to_i + birthdate[4].to_i + birthdate[5].to_i + birthdate[6].to_i + birthdate[7].to_i
     
@@ -6,6 +9,7 @@ def get_birth_path_num(birthdate)
     
     if number > 9
         number = number[0].to_i + number[1].to_i
+    end
     
     return number
 end
@@ -42,4 +46,11 @@ birth_path_num = get_birth_path_num(birthdate)
 
 message = get_message(birth_path_num)
 puts message
+    
+get '/:birthdate' do 
+   birthdate = params[:birthdate]
+    birth_path_num = get_birth_path_num(birthdate)
+    message = get_message(birth_path_num)
+    "#{message}"
+end
 

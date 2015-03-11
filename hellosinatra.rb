@@ -1,4 +1,5 @@
 require "sinatra"
+set :bind, '0.0.0.0'
 
 def determine_current_hour
     current_time = Time.new
