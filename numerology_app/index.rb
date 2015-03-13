@@ -39,23 +39,42 @@ def get_message(birth_path_num)
     end
 end
 
-puts "Please enter your birthdate, using the format MMDDYYYY."
-birthdate = gets
+get '/:birthdate' do 
+    setup_index_view
+end
 
-birth_path_num = get_birth_path_num(birthdate)
-
-message = get_message(birth_path_num)
-puts message
+get '/message/:birth_path_num' do
+    birth_path_num = params[:birth_path_num].to_i
+    @message = get_message(birth_path_num)
+    erb :index
+end
 
 get '/' do 
     erb :form
 end
 
 post '/' do
-birthdate = params[:birthdate]
+birthdate = params[:birthdate].gsub("-", "")
+    if valid_birthdate(birthdate)
     birth_path_num = get_birth_path_num(birthdate)
-    @message = get_message(birth_path_num)
+        redirect "/message/#{birth_path_num}"
+    else
+        @error = "Sorry!  You must enter a valid birthdate in the format MMDDYYYY!"
+        erb :form
+    end
+end
+
+def setup_index_view
+	birthdate = params[:birthdate]
+	birth_path_num = get_birth_path_num(birthdate)
+	@message = get_message(birth_path_num)
     erb :index
 end
 
-
+def valid_birthdate(input)
+    if (input.length == 8 && !input.match(/^[0-9]+[0-9]$/).nil?)
+        true
+    else
+        false
+    end
+end
