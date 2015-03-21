@@ -7,11 +7,11 @@ class Person < ActiveRecord::Base
     number = number[0].to_i + number[1].to_i
     
     if number > 9
+        number = number.to_s
         number = number[0].to_i + number[1].to_i
     end
     
     return number
-end
 end
 
 def self.get_message(birth_path_num)
@@ -46,4 +46,5 @@ def self.valid_birthdate(input)
     else
         false
     end
+end
 end
