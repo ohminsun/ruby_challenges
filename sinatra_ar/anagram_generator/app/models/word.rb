@@ -2,7 +2,7 @@ class Word
   
   require_relative 'reverse_letters'  
      
-  def self.find_anagram(string)
+  def self.find_anagrams(string)
   letters = string.split(//)
  
   anagrams = []
