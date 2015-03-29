@@ -1,8 +1,8 @@
 require "sinatra"
 set :bind, '0.0.0.0'
 
-get '/'
-    erb: index
+get '/' do
+    erb :index
 end
 
 get '/anagrams/:word' do
