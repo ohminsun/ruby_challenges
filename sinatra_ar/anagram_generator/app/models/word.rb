@@ -1,4 +1,4 @@
-class Word
+class Word < ActiveRecord::Base
   
   require_relative 'reverse_letters'  
      
@@ -22,5 +22,5 @@ class Word
     letters.each_with_index do |letter, index|
         reversed_letters[length - index - 1] = letter
     end
-     
+end
 end
