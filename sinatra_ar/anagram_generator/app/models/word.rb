@@ -1,6 +1,4 @@
-class Word < ActiveRecord::Base
-  
-  require_relative 'reverse_letters'  
+class Word < ActiveRecord::Base 
      
   def self.find_anagrams(string)
   letters = string.split(//)
@@ -9,11 +7,16 @@ class Word < ActiveRecord::Base
  
   letters.each do |letter|
     remaining = letters.select { |l| l != letter }
+  end
  
     anagrams << letter + remaining.join('')
  
     anagrams << letter + reverse_letters(remaining).join('')
-  end
+    
+    potential_anagram = first_letter + reversed_letters
+        if Word.find_by_text(potential_anagram).present? 
+        combinations << potential_anagram
+            end
      
   def self.reverse_letters(letters)
     length = letters.length
@@ -22,5 +25,30 @@ class Word < ActiveRecord::Base
     letters.each_with_index do |letter, index|
         reversed_letters[length - index - 1] = letter
     end
+      
+      def three_letters?(input)
+          if input.length = 3
+              true
+          else
+              false
+          end
+      end
+          
+      def distinct_letters?(input)
+        letter_array = input.chars
+        unique_letters = letter_array.uniq
+            if unique_letters.length < letter_array.length
+                false
+             else
+            true
+             end
+            end
+      
+      def valid_input(input)
+  if input.length > 3
+     raise Exception.new("Word must be less than or equal to 3 characters.")
+  end
+          
+end
 end
 end

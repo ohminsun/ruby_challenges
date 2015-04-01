@@ -7,6 +7,6 @@
 </form>
 </div>
 
-
-
-
+<% if @error.present? %>
+  <p class='error'><%= "#{@error}" %></p>
+<% end %>
