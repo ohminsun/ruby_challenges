@@ -1,0 +1,17 @@
+<h1>Words</h1>
+  <table class="table table-striped">
+    <thead>
+      <th>Text</th>
+      <th>Letters</th>    
+    </thead>
+    <tbody>
+      <% if !@anagrams.nil? %>
+      <% @anagrams.each do |word| %>
+        <tr>
+            <a href= "<%= "/words/#{word.id}" %>">
+            <%= "#{word.text}" %></a>   
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
