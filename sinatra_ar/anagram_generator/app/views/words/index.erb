@@ -2,21 +2,27 @@
   <table class="table table-striped">
     <thead>
       <th>Text</th>
-      <th>Letters</th>    
+      <th>Letters</th>
+      <th>Delete</th>
     </thead>
     <tbody>
-      <% if !@anagrams.nil? %>
-      <% @anagrams.each do |word| %>
+      <% @words.each do |word| %>
         <tr>
-            <a href= "<%= "/words/#{word.id}" %>">
-            <%= "#{word.text}" %></a>   
+          <td>
+            <a href="<%= "/words/#{word.id}" %>">
+              <%= "#{word.text}" %>
+            </a>
+          </td>
+          <td><%= "#{word.letters}" %></td>
+          <td>
+            <form action="what goes here?" method="post">
+              <input type="hidden" name="_method" value="...and how about here?" />
+              <button class="btn btn-danger" type="submit">
+                Delete
+              </button>
+            </form>
+          </td>
         </tr>
-      <td>
-    <a href="<%= "/words/#{word.id}/edit" %>">
-      Edit
-    </a>
-  </td>
       <% end %>
     </tbody>
   </table>
-
