@@ -11,6 +11,11 @@
             <a href= "<%= "/words/#{word.id}" %>">
             <%= "#{word.text}" %></a>   
         </tr>
+      <td>
+    <a href="<%= "/words/#{word.id}/edit" %>">
+      Edit
+    </a>
+  </td>
       <% end %>
     </tbody>
   </table>
